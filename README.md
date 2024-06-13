@@ -1,0 +1,1 @@
+Desarrollo en Java del algoritmo de Kruskal para obtener el árbol de recubrimiento mínimo (minimum spanning tree) de un grafo no dirigido y conectado con costos.
