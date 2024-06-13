@@ -3,7 +3,7 @@ package tpo.programacion3;
 import tpo.programacion3.disjointset.DisjointSet;
 import tpo.programacion3.graph.Edge;
 import tpo.programacion3.graph.Graph;
-import tpo.programacion3.heap.Heap;
+import tpo.programacion3.heap.MinHeap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +12,16 @@ public class Kruskal {
     // Kruskal minimum spanning tree
     public static List<Edge> kruskalMST(Graph graph) {
         List<Edge> result = new ArrayList<>();
-        Heap heap = new Heap();
+        MinHeap minHeap = new MinHeap();
         for (Edge edge : graph.edges()) {
-            heap.push(edge);
+            minHeap.push(edge);
         }
 
         DisjointSet disjointSet = new DisjointSet(graph.getNumVertices());
 
-        while (!heap.isEmpty() && result.size() < graph.getNumVertices() - 1) {
-            Edge edge = heap.first();
-            heap.pop();
+        while (!minHeap.isEmpty() && result.size() < graph.getNumVertices() - 1) {
+            Edge edge = minHeap.first();
+            minHeap.pop();
 
             int rootSource = disjointSet.find(edge.getSource());
             int rootDest = disjointSet.find(edge.getDestination());

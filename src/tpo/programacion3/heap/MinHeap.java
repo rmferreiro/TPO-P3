@@ -4,10 +4,10 @@ import tpo.programacion3.graph.Edge;
 
 import java.util.PriorityQueue;
 
-public class Heap implements IHeap {
+public class MinHeap implements IHeap {
     private final PriorityQueue<Edge> heap;
 
-    public Heap() {
+    public MinHeap() {
         this.heap = new PriorityQueue<>();
     }
 
