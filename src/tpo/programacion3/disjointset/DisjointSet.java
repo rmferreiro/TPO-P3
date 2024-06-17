@@ -1,15 +1,16 @@
 package tpo.programacion3.disjointset;
 
 public class DisjointSet implements IDisjointSet {
-    private final int[] parent, rank;
+    private final int[] parent, size;
     private int count;
 
-    public DisjointSet(int size) {
-        parent = new int[size];
-        rank = new int[size];
-        count = size;
-        for (int i = 0; i < size; i++) {
+    public DisjointSet(int initialSize) {
+        parent = new int[initialSize];
+        size = new int[initialSize];
+        count = initialSize;
+        for (int i = 0; i < initialSize; i++) {
             parent[i] = i;
+            this.size[i] = 1;
         }
     }
 
@@ -27,13 +28,12 @@ public class DisjointSet implements IDisjointSet {
         int rootY = find(y);
 
         if (rootX != rootY) {
-            if (rank[rootX] > rank[rootY]) {
-                parent[rootY] = rootX;
-            } else if (rank[rootX] < rank[rootY]) {
+            if (size[rootX] < size[rootY]) {
                 parent[rootX] = rootY;
+                size[rootY] += size[rootX];
             } else {
                 parent[rootY] = rootX;
-                rank[rootX]++;
+                size[rootX] += size[rootY];
             }
             count--;
         }
@@ -44,4 +44,3 @@ public class DisjointSet implements IDisjointSet {
         return count;
     }
 }
-
